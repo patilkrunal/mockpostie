@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/esm/Container';
 import './Pagination.css';
 
 function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
-  const [pages] = useState(Math.round(data.length / dataLimit));
+  const pages = Math.ceil(data.length / dataLimit);
   const [currentPage, setCurrentPage] = useState(1);
 
   function goToNextPage() {
@@ -27,14 +27,18 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
 
   const getPaginationGroup = () => {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-    return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
+    let paginationGroup = [];
+    for (let i = start + 1; i <= (start + pageLimit) && i <= pages; i++) {
+      paginationGroup.push(i);
+    }
+    return paginationGroup;
   };
 
   return (
     <div>
       {/* show the posts */}
       <Container>
-        <h1>{title}</h1>
+        <h3>{title}</h3>
         {getPaginatedData().map((d, idx) => (
           <RenderComponent key={idx} data={d} />
         ))}

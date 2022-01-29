@@ -4,10 +4,12 @@ import CustomNavbar from "../components/CustomNavbar";
 import EndPoint from "../components/EndPoint";
 import Pagination from "../components/Pagination";
 import CustomLoader from "../components/CustomLoader";
+import "./view.css";
 
 const API_URL = "http://localhost:8000";
 
 function View() {
+  const endPointsRef = useRef();
   const [endPoints, setEndPoints] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -25,8 +27,22 @@ function View() {
   if (loading) {
     return <CustomLoader />;
   }
+  const search = (query) => {
+    const filteredEndPoints = endPointsRef.current.filter(function (endPoint) {
+      return query === "" || endPoint["title"].includes(query);
+    });
+    setEndPoints(filteredEndPoints);
+  };
+
   return (
     <div>
+      <input
+        placeholder="enter endpoint to search"
+        className="searchBox"
+        onChange={(event) => {
+          search(event.target.value);
+        }}
+      />
       {endPoints.length > 0 ? (
         <>
           <Pagination
