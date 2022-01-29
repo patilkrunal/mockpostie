@@ -10,7 +10,6 @@ from .models import Link
 import json
 
 
-@login_required
 def index(request, user_id):
     current_user = request.user
     if current_user.is_authenticated:
@@ -22,7 +21,7 @@ def index(request, user_id):
     json_data = list(links.values('customUrl'))
     return JsonResponse(json_data, safe = False)
 
-@login_required()
+
 def customLink(request, user_id, customUrl):
     current_user = request.user
     if current_user.is_authenticated:
@@ -35,7 +34,7 @@ def customLink(request, user_id, customUrl):
 
 
 @csrf_exempt
-@login_required()
+@login_required
 def createLink(request):
     print(request.POST)
     if request.method=="POST":   

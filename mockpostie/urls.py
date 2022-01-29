@@ -20,7 +20,7 @@ from django.views.decorators.cache import never_cache
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('core.urls')),
+    path('', include('core.urls')),
 ]
 
 urlpatterns += [re_path(r'^.*', never_cache(TemplateView.as_view(template_name='index.html')))]

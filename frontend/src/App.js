@@ -1,9 +1,11 @@
-import "./App.css";
+import './App.css';
+import CustomNavbar from './components/CustomNavbar';
 
 function App() {
   return (
     <div className="App">
-      <p>Hello world!</p>
+      <CustomNavbar/>
+      
     </div>
   );
 }
