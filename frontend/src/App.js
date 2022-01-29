@@ -1,11 +1,11 @@
-import './App.css';
-import CustomNavbar from './components/CustomNavbar';
+import "./App.css";
+import CustomNavbar from "./components/CustomNavbar";
 
 function App() {
   return (
     <div className="App">
-      <CustomNavbar/>
-      
+      <CustomNavbar />
+      <p>We are in react app component</p>
     </div>
   );
 }
