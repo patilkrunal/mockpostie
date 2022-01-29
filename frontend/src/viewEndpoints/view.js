@@ -3,6 +3,7 @@ import axios from 'axios';
 import CustomNavbar from '../components/CustomNavbar';
 import EndPoint from "../components/EndPoint";
 import Pagination from "../components/Pagination";
+import CustomLoader from "../components/CustomLoader";
 
 function View() {
   const [endPoints, setEndPoints] = useState([]);
@@ -19,7 +20,7 @@ function View() {
   }, []);
   if(loading) {
     return (
-      <h1>...loading</h1>
+      <CustomLoader/>
     )
   }
   return (

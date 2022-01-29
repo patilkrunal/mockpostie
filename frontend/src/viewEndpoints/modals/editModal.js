@@ -1,30 +1,37 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/esm/Button';
 import { useState } from 'react';
+import CustomLoader from '../../components/CustomLoader';
+import axios from 'axios';
+import './Modal.css';
 
-function EditEndPointModal({setEdit}) {
+function EditEndPointModal({data, setEdit}) {
   const [show, setShow] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
     setShow(false);
     setEdit(false);
   }
 
-  const editEndPoint = event => {
+  const editEndPoint = async (event) => {
     event.preventDefault();
     console.log('in edit');
-    // call api
-    // add loader
+    setLoading(true);
+    await axios.get('https://jsonplaceholder.typicode.com/posts');
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    setLoading(false);
     handleClose();
   }
   
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} className='modalBackground'>
+        {loading && <CustomLoader/>}
         <Modal.Header closeButton>
-          <Modal.Title>Edit</Modal.Title>
+          <Modal.Title>{data.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>{data.body}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

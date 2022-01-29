@@ -1,19 +1,20 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/esm/Button';
 import { useState } from 'react';
+import './Modal.css';
 
-function PreviewEndPointModal({setPreview}) {
+function PreviewEndPointModal({data, setPreview}) {
   const [show, setShow] = useState(true);
   const handleClose = () => {
     setShow(false);
     setPreview(false);
   }
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} className='modalBackground'>
       <Modal.Header closeButton>
-        <Modal.Title>Preview</Modal.Title>
+        <Modal.Title>{data.title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+      <Modal.Body>{data.body}</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Close

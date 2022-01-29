@@ -7,7 +7,7 @@ urlpatterns = [
     # path('', redirectToHomepage, name='redirectToHomepage'),
     path('<int:user_id>/', index, name='index'),
     path('<int:user_id>/<slug:customUrl>', customLink, name='customLink'),
-    path('addurl/', createLink, name='createLink'),
+    path('create/', createLink, name='createLink'),
     
     path('accounts/login/', login, name='login'),
     path('logout/', logout_view, name='logout'),

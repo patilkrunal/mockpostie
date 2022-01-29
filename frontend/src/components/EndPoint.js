@@ -47,9 +47,9 @@ function EndPoint(props) {
           </ListGroup.Item>
         </ListGroup>
       </Card>
-      {preview && <PreviewEndPointModal setPreview = {setPreview}/>}
-      {edit && <EditEndPointModal setEdit = {setEdit}/>}
-      {trash && <DeleteEndPointModal setTrash = {setTrash}/>}
+      {preview && <PreviewEndPointModal data = {data} setPreview = {setPreview}/>}
+      {edit && <EditEndPointModal data = {data} setEdit = {setEdit}/>}
+      {trash && <DeleteEndPointModal data={data} setTrash = {setTrash}/>}
     </Container>
   );
 }

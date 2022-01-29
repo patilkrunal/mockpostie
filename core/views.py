@@ -33,8 +33,8 @@ def customLink(request, user_id, customUrl):
     return HttpResponse(response)
 
 
+# @login_required
 @csrf_exempt
-@login_required
 def createLink(request):
     print(request.POST)
     if request.method=="POST":   
@@ -42,7 +42,7 @@ def createLink(request):
         response = request.POST['response']
         user = request.user
 
-        link = Link(customUrl=customUrl, response=response, user=user)
+        link = Link(customUrl=customUrl, response=response, user=None)
         link.save()
         return HttpResponse("success")
     return HttpResponse('Request is not a POST Request')
