@@ -5,7 +5,7 @@ from .views import index, customLink, createLink, redirectToHomepage, logout_vie
 
 urlpatterns = [
     # path('', redirectToHomepage, name='redirectToHomepage'),
-    path('<int:user_id>/', index, name='index'),
+    path('', index, name='index'),
     path('<int:user_id>/<slug:customUrl>', customLink, name='customLink'),
     path('create/', createLink, name='createLink'),
     

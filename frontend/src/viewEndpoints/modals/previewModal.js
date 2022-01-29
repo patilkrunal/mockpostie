@@ -12,9 +12,9 @@ function PreviewEndPointModal({data, setPreview}) {
   return (
     <Modal show={show} onHide={handleClose} className='modalBackground'>
       <Modal.Header closeButton>
-        <Modal.Title>{data.title}</Modal.Title>
+        <Modal.Title>{data.customUrl}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{data.body}</Modal.Body>
+      <Modal.Body>{data.response}</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Close

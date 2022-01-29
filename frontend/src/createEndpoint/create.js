@@ -1,27 +1,29 @@
+import React from "react";
+import axios from "axios";
 import CustomNavbar from "../components/CustomNavbar";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import "./create.css";
-import axios from "axios";
+
+const API_URL = "http://localhost:8000";
 
 function Create() {
   const createMockAPI = (event) => {
     event.preventDefault();
     const customUrl = event.target.elements.urlEndpoint.value;
     const response = event.target.elements.response.value;
-    console.log(customUrl, response);
 
     axios
       .post(
-        `http://127.0.0.1:8000/create/`,
+        `${API_URL}/api/create/`,
         {
           customUrl,
           response,
         },
         {
           headers: {
-            Authorization: `AUTHORIZATION_KEY`,
+            Authorization: "AUTHORIZATION_KEY",
             "Content-Type": "application/json",
           },
         }
