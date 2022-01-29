@@ -29,9 +29,9 @@ function EditEndPointModal({data, setEdit}) {
       <Modal show={show} onHide={handleClose} className='modalBackground'>
         {loading && <CustomLoader/>}
         <Modal.Header closeButton>
-          <Modal.Title>{data.title}</Modal.Title>
+          <Modal.Title>{data.customUrl}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{data.body}</Modal.Body>
+        <Modal.Body>{data.response}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
