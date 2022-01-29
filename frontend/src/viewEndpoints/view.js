@@ -21,27 +21,25 @@ function View() {
     };
     fetchEndPoints();
   }, []);
+
   if (loading) {
     return <CustomLoader />;
   }
   return (
     <div>
-      <CustomNavbar />
-      <div>
-        {endPoints.length > 0 ? (
-          <>
-            <Pagination
-              data={endPoints}
-              RenderComponent={EndPoint}
-              title="EndPoints"
-              pageLimit={4}
-              dataLimit={8}
-            />
-          </>
-        ) : (
-          <h1>No Endpoints to display</h1>
-        )}
-      </div>
+      {endPoints.length > 0 ? (
+        <>
+          <Pagination
+            data={endPoints}
+            RenderComponent={EndPoint}
+            title="EndPoints"
+            pageLimit={4}
+            dataLimit={8}
+          />
+        </>
+      ) : (
+        <h1>No Endpoints to display</h1>
+      )}
     </div>
   );
 }

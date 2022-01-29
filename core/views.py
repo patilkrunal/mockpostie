@@ -62,17 +62,18 @@ def index(request):
     json_data = list(links.values())
     return JsonResponse(json_data, safe = False)
 
-    # return HttpResponseRedirect(redirect_to='/signup')
 
-def customLink(request, user_id, customUrl):
-    current_user = request.user
-    if current_user.is_authenticated:
-        link = Link.objects.get(customUrl=customUrl, user=current_user)
-    else:
-        return HttpResponseRedirect(redirect_to='/signup')
+def customLink(request, user_id, customUrl):    
+    if request.method=="GET":   
+        if request.user.is_anonymous:
+            link = Link.objects.latest('id')
+        elif request.user.is_authenticated:
+            user = request.user
+            link = Link.objects.get(customUrl=customUrl, user=request.user)
+        response = link.response
+        return HttpResponse(response)
     
-    response = link.response
-    return HttpResponse(response)
+    return HttpResponse("customLink here")
 
 
 # @login_required
@@ -94,12 +95,33 @@ def createLink(request):
     return HttpResponse('Request is not a POST Request')
 
 
-def redirectToHomepage(request):
-    if request.user.is_authenticated:
-        user_id = request.user.id
-        return HttpResponseRedirect(redirect_to='%s' %user_id)
-    
-    return HttpResponse("Homepage here")
+# @login_required
+@csrf_exempt
+def editLink(request, customUrl):
+    data = json.loads(request.body.decode('utf-8'))
+    if request.method=="POST":
+        response = data['response']
+        if request.user.is_anonymous:
+            link = Link.objects.filter(customUrl=customUrl)
+        else:
+            link = Link.objects.filter(user=request.user, customUrl=customUrl)
+        link.update(response=response)
+        return HttpResponse("Link updated")
+    return HttpResponse('Error while updating link')
+
+
+# @login_required
+@csrf_exempt
+def deleteLink(request, customUrl):
+    print(request.method, customUrl)
+    if request.method=="POST":
+        if request.user.is_anonymous:
+            link = Link.objects.filter(customUrl=customUrl)
+        else:
+            link = Link.objects.filter(user=request.user, customUrl=customUrl)
+        link.delete()
+        return HttpResponse("Link deleted")
+    return HttpResponse('Error while deleting link')
 
 
 def login(request):

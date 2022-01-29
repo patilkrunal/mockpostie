@@ -12,10 +12,10 @@ mockpostie is a tool to mock API requests. This repo contains backend for mockpo
 - start django server in production: `python3 manage.py runserver`
 
 ### RUN Frontend
-- cd frontend
-- install dependencies: npm install
-- start: npm start
+- `cd frontend`
+- install dependencies: `npm install`
+- start: `npm start`
 
 ### When Frontend changes form a new React App build
-- cd frontend
-- npm run build
+- `cd frontend`
+- `npm run build`

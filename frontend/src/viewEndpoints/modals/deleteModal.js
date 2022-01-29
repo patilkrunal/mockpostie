@@ -5,6 +5,8 @@ import "./Modal.css";
 import CustomLoader from "../../components/CustomLoader";
 import axios from "axios";
 
+const API_URL = "http://localhost:8000";
+
 function DeleteEndPointModal({ data, setTrash }) {
   const [show, setShow] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -14,12 +16,19 @@ function DeleteEndPointModal({ data, setTrash }) {
     setTrash(false);
   };
 
-  const deleteEndPoint = async (event) => {
-    event.preventDefault();
-    console.log("in delete");
+  const deleteLink = () => {
+    const customUrl = data["customUrl"];
+
     setLoading(true);
-    await axios.get("https://jsonplaceholder.typicode.com/posts");
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    axios
+      .post(`${API_URL}/api/deleteLink/${customUrl}`, {
+        headers: {
+          Authorization: "AUTHORIZATION_KEY",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => console.log(res))
+      .catch((error) => console.err(error));
     setLoading(false);
     handleClose();
   };
@@ -36,7 +45,7 @@ function DeleteEndPointModal({ data, setTrash }) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="danger" onClick={deleteEndPoint}>
+          <Button variant="danger" onClick={deleteLink}>
             Delete
           </Button>
         </Modal.Footer>

@@ -10,6 +10,7 @@ import EditEndPointModal from "../viewEndpoints/modals/editModal";
 import DeleteEndPointModal from "../viewEndpoints/modals/deleteModal";
 import PreviewEndPointModal from "../viewEndpoints/modals/previewModal";
 
+
 function EndPoint(props) {
   const data = props.data;
   const [preview, setPreview] = useState(false);
@@ -18,21 +19,22 @@ function EndPoint(props) {
 
   const previewEndPoint = (event) => {
     event.preventDefault();
-    console.log("in preview");
+    console.log("in previewEndPoint");
     setPreview(true);
   };
 
   const editEndPoint = (event) => {
     event.preventDefault();
-    console.log("in edit");
+    console.log("in editEndPoint");
     setEdit(true);
   };
 
   const deleteEndPoint = (event) => {
     event.preventDefault();
-    console.log("in delete");
+    console.log("in deleteEndPoint");
     setTrash(true);
   };
+
   return (
     <Container>
       <Card>
