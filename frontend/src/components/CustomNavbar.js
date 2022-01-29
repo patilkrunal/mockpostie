@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 
 function CustomNavbar() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="mb-3">
       <Container>
       <Navbar.Brand href="/">MockPostie</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
