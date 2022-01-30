@@ -19,19 +19,16 @@ function EndPoint(props) {
 
   const previewEndPoint = (event) => {
     event.preventDefault();
-    console.log("in previewEndPoint");
     setPreview(true);
   };
 
   const editEndPoint = (event) => {
     event.preventDefault();
-    console.log("in editEndPoint");
     setEdit(true);
   };
 
   const deleteEndPoint = (event) => {
     event.preventDefault();
-    console.log("in deleteEndPoint");
     setTrash(true);
   };
 

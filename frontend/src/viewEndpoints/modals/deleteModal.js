@@ -16,10 +16,11 @@ function DeleteEndPointModal({ data, setTrash }) {
 
   const deleteLink = () => {
     const customUrl = data["customUrl"];
-
     setLoading(true);
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/deleteLink/${customUrl}`, {
+      .post(`${process.env.REACT_APP_API_URL}/api/deleteLink`,
+      {customUrl},
+      {
         headers: {
           Authorization: "AUTHORIZATION_KEY",
           "Content-Type": "application/json",

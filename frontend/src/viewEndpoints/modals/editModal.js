@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
@@ -9,31 +9,21 @@ import "./Modal.css";
 function EditEndPointModal({ data, setEdit }) {
   const [show, setShow] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState("");
 
   const handleClose = () => {
     setShow(false);
     setEdit(false);
   };
 
-  useEffect(() => {
-    if (data) {
-      setResponse(data["response"]);
-    }
-  }, [loading]);
-
-  const updateResponse = (event) => {
-    setResponse(event.target.value);
-  };
-
-  const save = () => {
-    const customUrl = data["customUrl"];
-
+  const editEndPoint = (event) => {
+    event.preventDefault();
+    const customUrl = event.target.elements.urlEndpoint.value;
+    const response = event.target.elements.response.value;
     setLoading(true);
     axios
       .post(
-        `${process.env.REACT_APP_API_URL}/api/editLink/${customUrl}`,
-        { response },
+        `${process.env.REACT_APP_API_URL}/api/editLink`,
+        { response, customUrl },
         {
           headers: {
             Authorization: "AUTHORIZATION_KEY",
@@ -51,27 +41,44 @@ function EditEndPointModal({ data, setEdit }) {
     <>
       <Modal show={show} onHide={handleClose} className="modalBackground">
         {loading && <CustomLoader />}
+
         <Modal.Header closeButton>
-          <Modal.Title>/{data.customUrl}</Modal.Title>
+          <Modal.Title>Edit</Modal.Title>
         </Modal.Header>
+        
         <Modal.Body>
-          <Form.Group>
-            <Form.Label>Updated Response: </Form.Label>
-            <Form.Control
-              type="text"
-              onChange={(event) => updateResponse(event)}
-              value={response}
-            />
-          </Form.Group>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={save}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+          <Form onSubmit={editEndPoint}>
+            <Form.Group controlId="UrlEndpoint" className="mb-3">
+              <Form.Label className="h4">URL Endpoint</Form.Label>
+              <Form.Control
+                type="text"
+                name="urlEndpoint"
+                defaultValue={data.customUrl}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group controlId="UrlEndpointResponse" className="mb-3">
+              <Form.Label className="h4">Response</Form.Label>
+              <textarea
+                className="form-control"
+                name="response"
+                rows="3"
+                defaultValue={data.response}
+                required
+              />
+            </Form.Group>
+            
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" type="submit">
+                Save
+              </Button>
+            </Modal.Footer>
+          </Form>
+        </Modal.Body>    
       </Modal>
     </>
   );
