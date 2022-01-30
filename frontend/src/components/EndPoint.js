@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "react-bootstrap/esm/Button";
-import ButtonGroup from "react-bootstrap/esm/Button";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import {
   faPenSquare,
   faTrash,
@@ -14,6 +15,7 @@ import DeleteEndPointModal from "../viewEndpoints/modals/deleteModal";
 import PreviewEndPointModal from "../viewEndpoints/modals/previewModal";
 
 import "./EndPoint.css";
+import Container from "react-bootstrap/esm/Container";
 
 const EndPoint = (props) => {
   const data = props.data;
@@ -40,46 +42,44 @@ const EndPoint = (props) => {
   };
 
   return (
-    <>
-      <span>{data.customUrl}</span>
-      <ButtonGroup variant="text" size="sm" style={{ float: "right" }}>
-        <Button
-          className="btn-sm"
-          onClick={deleteEndPoint}
-          variant="danger"
-          style={{ width: "fitContent" }}
-        >
-          <FontAwesomeIcon icon={faTrash} name="delete" />
-        </Button>
-        <Button
-          className="btn-sm"
-          type="submit"
-          variant="primary"
-          onClick={previewEndPoint}
-        >
-          <FontAwesomeIcon icon={faEye} name="preview" />
-        </Button>
-        <Button
-          className="btn-sm"
-          type="submit"
-          variant="primary"
-          onClick={editEndPoint}
-        >
-          <FontAwesomeIcon icon={faPenSquare} name="edit" />
-        </Button>
-        <Button
-          className="btn-sm"
-          type="submit"
-          variant="primary"
-          onClick={() => navigator.clipboard.writeText(customUrl)}
-        >
-          <FontAwesomeIcon icon={faCopy} name="copyToClipboard" />
-        </Button>
-      </ButtonGroup>
+    <Container>
+      <Row>
+        <Col><span>{data.customUrl}</span></Col>
+        <Col style={{'textAlign':'right'}}>
+          <Button
+            size="sm"
+            onClick={deleteEndPoint}
+            variant="outline-danger"
+          >
+            <FontAwesomeIcon icon={faTrash} name="delete" />
+          </Button>
+          <Button
+            size="sm"
+            variant="outline-primary"
+            onClick={previewEndPoint}
+          >
+            <FontAwesomeIcon icon={faEye} name="preview" />
+          </Button>
+          <Button
+            size="sm"
+            variant="outline-primary"
+            onClick={editEndPoint}
+          >
+            <FontAwesomeIcon icon={faPenSquare} name="edit" />
+          </Button>
+          <Button
+            size="sm"
+            variant="outline-primary"
+            onClick={() => navigator.clipboard.writeText(customUrl)}
+          >
+            <FontAwesomeIcon icon={faCopy} name="copyToClipboard" />
+          </Button>
+        </Col>
+      </Row>
       {preview && <PreviewEndPointModal data={data} setPreview={setPreview} />}
       {edit && <EditEndPointModal data={data} setEdit={setEdit} />}
       {trash && <DeleteEndPointModal data={data} setTrash={setTrash} />}
-    </>
+    </Container>
   );
 };
 

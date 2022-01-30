@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Container from "react-bootstrap/esm/Container";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./Pagination.css";
@@ -38,20 +37,18 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
 
   return (
     <div>
-      <Container>
         <Card>
           <Card.Header>
             <h3>{title}</h3>
           </Card.Header>
           <ListGroup variant="flush">
             {getPaginatedData().map((d, idx) => (
-              <ListGroup.Item>
+              <ListGroup.Item key={idx}>
                 <RenderComponent key={idx} data={d} />
               </ListGroup.Item>
             ))}
           </ListGroup>
         </Card>
-      </Container>
 
       <div className="pagination">
         <button

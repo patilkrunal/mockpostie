@@ -3,7 +3,9 @@ import axios from "axios";
 import EndPoint from "../components/EndPoint";
 import Pagination from "../components/Pagination";
 import CustomLoader from "../components/CustomLoader";
-import "./view.css";
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import Container from "react-bootstrap/esm/Container";
 
 function View() {
   const endPointsRef = useRef();
@@ -33,14 +35,17 @@ function View() {
   };
 
   return (
-    <div>
-      <input
+    <Container>
+      <InputGroup size="sm" className="mb-1">
+        <FormControl 
+        aria-label="Small" 
+        aria-describedby="inputGroup-sizing-sm" 
         placeholder="enter endpoint to search"
-        className="searchBox"
         onChange={(event) => {
           search(event.target.value);
-        }}
-      />
+        }}/>
+      </InputGroup>
+
       {endPoints.length > 0 ? (
         <>
           <Pagination
@@ -54,7 +59,7 @@ function View() {
       ) : (
         <h1>No Endpoints to display</h1>
       )}
-    </div>
+    </Container>
   );
 }
 
