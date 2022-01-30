@@ -1,7 +1,9 @@
 # mockpostie-backend
 mockpostie is a tool to mock API requests. This repo contains backend for mockpostie.
 
-### RUN Backend Server
+
+### Before starting RUN Backend Server
+- rename `.env.sample` to `.env` and update your credentials
 - install dependencies: `pip install -r requirements.txt`
 - make migrations: `python3 manage.py makemigrations`
 - migrate: `python3 manage.py migrate`

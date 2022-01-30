@@ -1,6 +1,8 @@
-import {useState} from 'react';
-import Container from 'react-bootstrap/esm/Container';
-import './Pagination.css';
+import { useState } from "react";
+import Container from "react-bootstrap/esm/Container";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import "./Pagination.css";
 
 function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
   const pages = Math.ceil(data.length / dataLimit);
@@ -16,7 +18,7 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
 
   function changePage(event) {
     const pageNumber = Number(event.target.textContent);
-    setCurrentPage(pageNumber);  
+    setCurrentPage(pageNumber);
   }
 
   const getPaginatedData = () => {
@@ -28,7 +30,7 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
   const getPaginationGroup = () => {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
     let paginationGroup = [];
-    for (let i = start + 1; i <= (start + pageLimit) && i <= pages; i++) {
+    for (let i = start + 1; i <= start + pageLimit && i <= pages; i++) {
       paginationGroup.push(i);
     }
     return paginationGroup;
@@ -36,49 +38,50 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
 
   return (
     <div>
-      {/* show the posts */}
       <Container>
-        <h3>{title}</h3>
-        {getPaginatedData().map((d, idx) => (
-          <RenderComponent key={idx} data={d} />
-        ))}
+        <Card>
+          <Card.Header>
+            <h3>{title}</h3>
+          </Card.Header>
+          <ListGroup variant="flush">
+            {getPaginatedData().map((d, idx) => (
+              <ListGroup.Item>
+                <RenderComponent key={idx} data={d} />
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Card>
       </Container>
-  
-      {/* show the pagiantion
-          it consists of next and previous buttons
-          along with page numbers, in our case, 5 page
-          numbers at a time
-      */}
+
       <div className="pagination">
-        {/* previous button */}
         <button
           onClick={goToPreviousPage}
-          className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
+          className={`prev ${currentPage === 1 ? "disabled" : ""}`}
         >
           prev
         </button>
-  
-        {/* show page numbers */}
+
         {getPaginationGroup().map((item, index) => (
           <button
             key={index}
             onClick={changePage}
-            className={`paginationItem ${currentPage === item ? 'active' : null}`}
+            className={`paginationItem ${
+              currentPage === item ? "active" : null
+            }`}
           >
             <span>{item}</span>
           </button>
         ))}
-  
-        {/* next button */}
+
         <button
           onClick={goToNextPage}
-          className={`next ${currentPage === pages ? 'disabled' : ''}`}
+          className={`next ${currentPage === pages ? "disabled" : ""}`}
         >
           next
         </button>
       </div>
     </div>
-  );  
+  );
 }
 
 export default Pagination;

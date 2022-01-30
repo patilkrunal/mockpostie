@@ -5,7 +5,6 @@ import Pagination from "../components/Pagination";
 import CustomLoader from "../components/CustomLoader";
 import "./view.css";
 
-
 function View() {
   const endPointsRef = useRef();
   const [endPoints, setEndPoints] = useState([]);
