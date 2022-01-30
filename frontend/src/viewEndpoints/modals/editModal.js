@@ -6,8 +6,6 @@ import axios from "axios";
 import CustomLoader from "../../components/CustomLoader";
 import "./Modal.css";
 
-const API_URL = "http://localhost:8000";
-
 function EditEndPointModal({ data, setEdit }) {
   const [show, setShow] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -34,7 +32,7 @@ function EditEndPointModal({ data, setEdit }) {
     setLoading(true);
     axios
       .post(
-        `${API_URL}/api/editLink/${customUrl}`,
+        `${process.env.REACT_APP_API_URL}/api/editLink/${customUrl}`,
         { response },
         {
           headers: {

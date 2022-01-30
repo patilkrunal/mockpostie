@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import CustomNavbar from "../components/CustomNavbar";
 import EndPoint from "../components/EndPoint";
 import Pagination from "../components/Pagination";
 import CustomLoader from "../components/CustomLoader";
 import "./view.css";
 
-const API_URL = "http://localhost:8000";
 
 function View() {
   const endPointsRef = useRef();
@@ -16,7 +14,8 @@ function View() {
   useEffect(() => {
     const fetchEndPoints = async () => {
       setLoading(true);
-      const res = await axios.get(`${API_URL}/api/`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/`);
+      endPointsRef.current = res.data;
       setEndPoints(res.data);
       setLoading(false);
       console.log("res data: ", res.data);
@@ -29,7 +28,7 @@ function View() {
   }
   const search = (query) => {
     const filteredEndPoints = endPointsRef.current.filter(function (endPoint) {
-      return query === "" || endPoint["title"].includes(query);
+      return query === "" || endPoint["customUrl"].includes(query);
     });
     setEndPoints(filteredEndPoints);
   };

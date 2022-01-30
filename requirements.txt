@@ -3,3 +3,4 @@ backports.zoneinfo==0.2.1
 Django==4.0.1
 django-cors-headers==3.11.0
 sqlparse==0.4.2
+whitenoise==5.3.0

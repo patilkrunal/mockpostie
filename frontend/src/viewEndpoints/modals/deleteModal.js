@@ -5,8 +5,6 @@ import "./Modal.css";
 import CustomLoader from "../../components/CustomLoader";
 import axios from "axios";
 
-const API_URL = "http://localhost:8000";
-
 function DeleteEndPointModal({ data, setTrash }) {
   const [show, setShow] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -21,7 +19,7 @@ function DeleteEndPointModal({ data, setTrash }) {
 
     setLoading(true);
     axios
-      .post(`${API_URL}/api/deleteLink/${customUrl}`, {
+      .post(`${process.env.REACT_APP_API_URL}/api/deleteLink/${customUrl}`, {
         headers: {
           Authorization: "AUTHORIZATION_KEY",
           "Content-Type": "application/json",
