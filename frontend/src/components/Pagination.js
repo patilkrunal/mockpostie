@@ -1,15 +1,7 @@
-<<<<<<< HEAD
-import {useState} from 'react';
-import Container from 'react-bootstrap/esm/Container';
-import './Pagination.css';
-import React from 'react';
-
-=======
-import { useState } from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./Pagination.css";
->>>>>>> b80861521b23fd82f22cd77393d102db5b859ece
 
 function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
   const pages = Math.ceil(data.length / dataLimit);

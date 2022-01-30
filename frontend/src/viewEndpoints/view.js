@@ -3,24 +3,38 @@ import axios from "axios";
 import EndPoint from "../components/EndPoint";
 import Pagination from "../components/Pagination";
 import CustomLoader from "../components/CustomLoader";
-import React from "react";
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Container from "react-bootstrap/esm/Container";
+import { authentication } from "../loginEndpoint/FirebaseConfig"
+
 
 function View() {
   const endPointsRef = useRef();
   const [endPoints, setEndPoints] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);  
 
   useEffect(() => {
     const fetchEndPoints = async () => {
       setLoading(true);
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/`);
-      endPointsRef.current = res.data;
-      setEndPoints(res.data);
+      authentication.onAuthStateChanged( async (user)=>{
+        if(user){
+            let token = await user.getIdToken();
+            fetch(`${process.env.REACT_APP_API_URL}/api/`,{
+                headers:{
+                    "Authorization":`Bearer ${token}`
+                }
+            })
+            .then((response)=>response.json())
+            .then((JsonResponse)=>{
+                console.log(JsonResponse);
+                endPointsRef.current = JsonResponse;
+                setEndPoints(JsonResponse);
+
+            })
+        }
+    })
       setLoading(false);
-      console.log("res data: ", res.data);
     };
     fetchEndPoints();
   }, []);

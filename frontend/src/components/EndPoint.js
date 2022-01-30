@@ -1,20 +1,4 @@
-<<<<<<< HEAD
-import Card from 'react-bootstrap/Card';
-import { useState } from 'react';
-import Button from 'react-bootstrap/esm/Button';
-import Container from 'react-bootstrap/esm/Container';
-import ListGroup from 'react-bootstrap/ListGroup';
-import './EndPoint.css';
-import { faPenSquare, faTrash, faEye } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import EditEndPointModal from '../viewEndpoints/modals/editModal';
-import DeleteEndPointModal from '../viewEndpoints/modals/deleteModal';
-import PreviewEndPointModal from '../viewEndpoints/modals/previewModal';
-import React from 'react';
-
-function EndPoint(props) {
-=======
-import { useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "react-bootstrap/esm/Button";
 import Row from 'react-bootstrap/Row';
@@ -34,12 +18,11 @@ import "./EndPoint.css";
 import Container from "react-bootstrap/esm/Container";
 
 const EndPoint = (props) => {
->>>>>>> b80861521b23fd82f22cd77393d102db5b859ece
   const data = props.data;
   const [preview, setPreview] = useState(false);
   const [edit, setEdit] = useState(false);
   const [trash, setTrash] = useState(false);
-  const [customUrl, setCustomUrl] = useState(
+  const [customUrl] = useState(
     `${process.env.REACT_APP_API_URL}/api/1/${data.customUrl}/`
   );
 

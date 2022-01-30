@@ -11,8 +11,15 @@ from django.conf import settings
 from django.template import engines
 import urllib.request
 import json
-
 from .models import Link
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import auth
+from django.conf import settings
+# Create your views here.
+firebase_creds = credentials.Certificate(settings.FIREBASE_CONFIG)
+firebase_app = firebase_admin.initialize_app(firebase_creds)
+
 
 def iter_response(response, chunk_size=65536):
     try:
@@ -53,11 +60,26 @@ catchall = catchall_dev if settings.DEBUG else catchall_prod
 
 
 def index(request):
-    if request.user.is_anonymous:
-        links = Link.objects.all()
-    elif request.user.is_authenticated:
-        user = request.user
-        links = Link.objects.filter(user=user)
+
+     # get token
+    authorization_header = request.META.get('HTTP_AUTHORIZATION')
+    token = authorization_header.replace("Bearer ","")
+
+    try:
+        decoded_token = auth.verify_id_token(token)
+        firebase_user_id = decoded_token['user_id']
+
+        print("authorization_header: ", authorization_header)      
+        print("token: ", token)      
+        print("decoded_token: ", decoded_token)      
+        print("firebase_user_id: ", firebase_user_id)      
+        if request.user.is_anonymous:
+            links = Link.objects.all()
+        elif request.user.is_authenticated:
+            user = request.user
+            links = Link.objects.filter(user=user)
+    except:
+        return JsonResponse({"data":"user token is invalid"})
 
     json_data = list(links.values())
     return JsonResponse(json_data, safe = False)

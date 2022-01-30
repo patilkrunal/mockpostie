@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyD9jLaMAnw4KrlMISLvWmlqrMaILvV7mL8",
+  apiKey: process.env.REACT_FIREBASE_API_KEY,
   authDomain: "mockapi-fc598.firebaseapp.com",
   databaseURL: "https://mockapi-fc598-default-rtdb.firebaseio.com",
   projectId: "mockapi-fc598",
@@ -14,7 +14,14 @@ var firebaseConfig = {
 };
 
 
-//auth
+// //auth
 const app = initializeApp(firebaseConfig);
 
-export const authentication = getAuth(app);
+export const authentication = getAuth(app); 
+
+// if (!firebase.apps.length) {
+//   firebase.initializeApp(firebaseConfig);
+// }
+
+// export const authentication = firebase.auth();
+// export {firebase}
