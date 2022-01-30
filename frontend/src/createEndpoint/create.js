@@ -1,36 +1,38 @@
-import CustomNavbar from "../components/CustomNavbar";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/esm/Container";
-import "./create.css";
+import React from "react";
 import axios from "axios";
-import React from 'react';
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/esm/Container";
+import CustomNavbar from "../components/CustomNavbar";
+import "./create.css";
 
+const Create = () => {
+  const navigate = useNavigate();
 
-function Create() {
   const createMockAPI = (event) => {
-    event.preventDefault();
     const customUrl = event.target.elements.urlEndpoint.value;
     const response = event.target.elements.response.value;
-    console.log(customUrl, response);
 
     axios
       .post(
-        `http://127.0.0.1:8000/create/`,
+        `${process.env.REACT_APP_API_URL}/api/create/`,
         {
           customUrl,
           response,
         },
         {
           headers: {
-            Authorization: `AUTHORIZATION_KEY`,
+            Authorization: "AUTHORIZATION_KEY",
             "Content-Type": "application/json",
           },
         }
       )
       .then((res) => console.log(res))
       .catch((error) => console.err(error));
+    navigate("/");
   };
+
   return (
     <div>
       <CustomNavbar />
@@ -68,6 +70,6 @@ function Create() {
       </Container>
     </div>
   );
-}
+};
 
 export default Create;

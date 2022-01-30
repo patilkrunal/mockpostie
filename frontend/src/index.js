@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
@@ -11,7 +10,7 @@ import App from './App';
 import Create from './createEndpoint/create'
 import View from './viewEndpoints/view';
 import Login from './loginEndpoint/login';
-// import Logout from './loginEndpoint/lougout';
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,5 +23,5 @@ ReactDOM.render(
       </Routes>
     </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

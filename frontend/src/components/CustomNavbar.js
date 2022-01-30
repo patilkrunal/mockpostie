@@ -25,33 +25,29 @@ function CustomNavbar() {
 
     console.log("isSignedIn:" + isSignedIn);
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="dark"
+      variant="dark"
+      className="mb-3"
+    >
       <Container>
-      <Navbar.Brand href="/">MockPostie</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="me-auto">
-          {/* <Nav.Link href="#features">Home</Nav.Link> */}
-          <Nav.Link href="/create">Create</Nav.Link>
-          <Nav.Link href="/view">view</Nav.Link>
-          {/* <NavDropdown title="features" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">create</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-          </NavDropdown> */}
-        </Nav>
-        <Nav>
-          {
-            isSignedIn
-            ?
-            <Nav.Link onClick={signout}>Logout</Nav.Link>
-            :
-            <Nav.Link href="/login">Login/SignUp</Nav.Link>
-          }
-        </Nav>
-      </Navbar.Collapse>
+        <Navbar.Brand href="/">MockPostie</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto"></Nav>
+          <Nav>
+            <Nav.Link href="/create">Create</Nav.Link>
+            {
+              isSignedIn
+              ?
+              <Nav.Link onClick={signout}>Logout</Nav.Link>
+              :
+              <Nav.Link href="/login">Login/SignUp</Nav.Link>
+            }
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

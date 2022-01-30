@@ -2,10 +2,22 @@
 mockpostie is a tool to mock API requests. This repo contains backend for mockpostie.
 
 
-### POST query
-<code>
-curl --location --request POST 'http://127.0.0.1:8000/create/' \
---header 'Cookie: <put your loggedin cookie here>' \
---form 'customUrl="response"' \
---form 'response="\"response\""'
-</code>
+### Before starting RUN Backend Server
+- rename `.env.sample` to `.env` and update your credentials
+- install dependencies: `pip install -r requirements.txt`
+- make migrations: `python3 manage.py makemigrations`
+- migrate: `python3 manage.py migrate`
+
+
+- start virtualenv: `source env/bin/activate` or `./venv/bin/activate`
+- start django server in development: `DJANGO_ENV=development python3 manage.py runserver`
+- start django server in production: `python3 manage.py runserver`
+
+### RUN Frontend
+- `cd frontend`
+- install dependencies: `npm install`
+- start: `npm start`
+
+### When Frontend changes form a new React App build
+- `cd frontend`
+- `npm run build`
