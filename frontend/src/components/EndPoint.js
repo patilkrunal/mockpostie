@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import EditEndPointModal from '../viewEndpoints/modals/editModal';
 import DeleteEndPointModal from '../viewEndpoints/modals/deleteModal';
 import PreviewEndPointModal from '../viewEndpoints/modals/previewModal';
+import React from 'react';
 
 function EndPoint(props) {
   const data = props.data;

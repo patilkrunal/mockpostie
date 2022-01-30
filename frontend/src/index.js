@@ -10,6 +10,8 @@ import {
 import App from './App';
 import Create from './createEndpoint/create'
 import View from './viewEndpoints/view';
+import Login from './loginEndpoint/login';
+// import Logout from './loginEndpoint/lougout';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,6 +20,7 @@ ReactDOM.render(
         <Route path="/" exact element={<App/>}/>
         <Route path="/create" exact element={<Create/>}/>
         <Route path="/view" exact element={<View/>}/>
+        <Route path="/login" exact element={<Login/>}/>
       </Routes>
     </Router>
   </React.StrictMode>,

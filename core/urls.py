@@ -9,6 +9,6 @@ urlpatterns = [
     path('<int:user_id>/<slug:customUrl>', customLink, name='customLink'),
     path('create/', createLink, name='createLink'),
     
-    path('accounts/login/', login, name='login'),
+    path('login/', login, name='login'),
     path('logout/', logout_view, name='logout'),
 ]

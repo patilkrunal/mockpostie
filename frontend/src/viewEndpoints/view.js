@@ -4,6 +4,7 @@ import CustomNavbar from '../components/CustomNavbar';
 import EndPoint from "../components/EndPoint";
 import Pagination from "../components/Pagination";
 import CustomLoader from "../components/CustomLoader";
+import React from "react";
 
 function View() {
   const [endPoints, setEndPoints] = useState([]);

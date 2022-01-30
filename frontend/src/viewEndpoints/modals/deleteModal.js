@@ -4,6 +4,7 @@ import { useState } from 'react';
 import './Modal.css';
 import CustomLoader from '../../components/CustomLoader';
 import axios from 'axios';
+import React from 'react';
 
 function DeleteEndPointModal({data, setTrash}) {
   const [show, setShow] = useState(true);

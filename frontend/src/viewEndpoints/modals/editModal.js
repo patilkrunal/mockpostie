@@ -4,6 +4,7 @@ import { useState } from 'react';
 import CustomLoader from '../../components/CustomLoader';
 import axios from 'axios';
 import './Modal.css';
+import React from 'react';
 
 function EditEndPointModal({data, setEdit}) {
   const [show, setShow] = useState(true);
