@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: process.env.REACT_FIREBASE_API_KEY,
+  apiKey: "AIzaSyD9jLaMAnw4KrlMISLvWmlqrMaILvV7mL8",
   authDomain: "mockapi-fc598.firebaseapp.com",
   databaseURL: "https://mockapi-fc598-default-rtdb.firebaseio.com",
   projectId: "mockapi-fc598",
