@@ -257,4 +257,4 @@ cython_debug/
 
 static/*
 
-/mockpostie/firebase_config.json
+# /mockpostie/firebase_config.json
