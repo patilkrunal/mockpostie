@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-8wdb!k-&1jaxko!+d6^39k5m1^t-y!$@c7hkh6@dzq2pk^994l
 # DEBUG = os.environ.get('DJANGO_ENV') == 'development'
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'mockpostie.herokuapp.com']
 
 
 # Application definition
@@ -142,6 +142,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:8000",
     'https://localhost:3000',
+    'mockpostie.herokuapp.com',
 )
 
 FIREBASE_CONFIG = os.path.join(BASE_DIR, 'mockpostie/firebase_config.json')
