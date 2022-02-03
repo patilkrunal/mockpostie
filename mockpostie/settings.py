@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_on_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'mockpostie.urls'
@@ -128,6 +130,9 @@ STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 WHITENOISE_ROOT = os.path.join(BASE_DIR, 'frontend/build')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -140,3 +145,6 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 FIREBASE_CONFIG = os.path.join(BASE_DIR, 'mockpostie/firebase_config.json')
+
+TEST_RUNNER = 'django_on_heroku.HerokuDiscoverRunner'
+django_on_heroku.settings(locals())
