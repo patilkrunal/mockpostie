@@ -21,5 +21,5 @@ from core.views import catchall
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('core.urls')),
-    re_path(r'', catchall),
+    # re_path(r'', catchall),
 ]
