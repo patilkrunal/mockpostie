@@ -142,7 +142,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:8000",
     'https://localhost:3000',
-    'mockpostie.herokuapp.com',
+    'https://mockpostie.herokuapp.com',
 )
 
 FIREBASE_CONFIG = os.path.join(BASE_DIR, 'mockpostie/firebase_config.json')
