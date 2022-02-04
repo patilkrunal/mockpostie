@@ -63,20 +63,20 @@ catchall = catchall_prod
 def index(request):
 
      # get token
-    authorization_header = request.META.get('HTTP_AUTHORIZATION')
-    token = authorization_header.replace("Bearer ","")
+    # authorization_header = request.META.get('HTTP_AUTHORIZATION')
+    # token = authorization_header.replace("Bearer ","")
 
     try:
-        decoded_token = auth.verify_id_token(token)
-        firebase_user_id = decoded_token['user_id']
+        # decoded_token = auth.verify_id_token(token)
+        # firebase_user_id = decoded_token['user_id']
 
-        print("authorization_header: ", authorization_header)
-        print("token: ", token)
-        print("decoded_token: ", decoded_token)
-        print("firebase_user_id: ", firebase_user_id)
-        user = auth.get_user(firebase_user_id)
+        # print("authorization_header: ", authorization_header)
+        # print("token: ", token)
+        # print("decoded_token: ", decoded_token)
+        # print("firebase_user_id: ", firebase_user_id)
+        # user = auth.get_user(firebase_user_id)
 
-        print('user: ', user)
+        # print('user: ', user)
 
         if request.user.is_anonymous:
             links = Link.objects.all()
