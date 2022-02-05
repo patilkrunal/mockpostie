@@ -126,10 +126,11 @@ def createLink(request):
 
 # @login_required
 @csrf_exempt
-def editLink(request, customUrl):
+def editLink(request):
     data = json.loads(request.body.decode('utf-8'))
     if request.method=="POST":
         response = data['response']
+        customUrl = data['customUrl']
         if request.user.is_anonymous:
             link = Link.objects.filter(customUrl=customUrl)
         else:
@@ -141,9 +142,10 @@ def editLink(request, customUrl):
 
 # @login_required
 @csrf_exempt
-def deleteLink(request, customUrl):
-    print(request.method, customUrl)
+def deleteLink(request):
+    data = json.loads(request.body.decode('utf-8'))
     if request.method=="POST":
+        customUrl = data['customUrl']
         if request.user.is_anonymous:
             link = Link.objects.filter(customUrl=customUrl)
         else:
